@@ -54,23 +54,23 @@ enum custom_keycodes {
 //Intellij shortcuts
 #define BMRK_O  KC_F11
 #define BMRK_T  LSFT(KC_F11)
-#define BMRK_P  LCS(KC_F11)
+#define BMRK_P  LCTL(LSFT(KC_F11))
 #define BMRK_N  LSA(KC_F11)
-#define FIND    LCS(KC_F)
-#define OPEN    LCS(KC_N)
+#define FIND    LCTL(LSFT(KC_F))
+#define OPEN    LCTL(LSFT(KC_N))
 #define CMD_P   HYPR(KC_F)
 #define FND_USG LSA(KC_7)
 #define RFCT_MN HYPR(KC_T)
-#define RCNT_FI  LC(KC_E)
-#define GO_DCL  LC(KC_B)
+#define RCNT_FI  LCTL(KC_E)
+#define GO_DCL  LCTL(KC_B)
 #define GO_IMP  LCA(KC_B)
 #define GO_BCK  LSA(KC_LEFT)
 #define GO_FWD  LSA(KC_RIGHT)
 #define BLAME   HYPR(KC_B)
 #define REOPN   HYPR(KC_R)
 
-#define QCK_DEF LCS(KC_I)
-#define QCK_DOC LC(KC_Q)
+#define QCK_DEF LCTL(LSFT(KC_I))
+#define QCK_DOC LCTL(KC_Q)
 
 // GNOME shortcuts
 #define ACTY    KC_LGUI
