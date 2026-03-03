@@ -277,6 +277,41 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    uint8_t layer = get_highest_layer(layer_state);
+
+    if (layer == LAYER_BASE) {
+        rgb_matrix_set_color_all(180, 160, 255); // soft lavender
+        return false;
+    }
+
+    for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
+        for (uint8_t col = 0; col < MATRIX_COLS; col++) {
+            uint8_t index = g_led_config.matrix_co[row][col];
+
+            if (index >= led_min && index < led_max && index != NO_LED) {
+                uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col, row});
+
+                if (keycode == KC_NO) {
+                    rgb_matrix_set_color(index, 0, 0, 0); // off
+                } else {
+                    switch (layer) {
+                        case LAYER_SYM:      rgb_matrix_set_color(index, 140, 100, 255); break; // deeper purple
+                        case LAYER_NAV:      rgb_matrix_set_color(index, 100, 180, 255); break; // periwinkle blue
+                        case LAYER_POINTER:  rgb_matrix_set_color(index, 255, 150, 220); break; // lavender pink
+                        case LAYER_INTELIJ:  rgb_matrix_set_color(index, 200, 140, 255); break; // medium lavender
+                        case LAYER_INTELIJ2: rgb_matrix_set_color(index, 160, 100, 220); break; // darker lavender
+                        case LAYER_GAMING:   rgb_matrix_set_color(index, 255, 100, 180); break; // hot pink-lavender
+                        case LAYER_GNOME:    rgb_matrix_set_color(index, 180, 220, 255); break; // icy lavender blue
+                        default:             rgb_matrix_set_color(index, 0, 0, 0);       break;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
 #endif // RGB_MATRIX_ENABLE
 
 #ifdef ENCODER_MAP_ENABLE
