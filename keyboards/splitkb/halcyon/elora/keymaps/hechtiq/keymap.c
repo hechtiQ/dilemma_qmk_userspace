@@ -40,7 +40,6 @@ enum dilemma_keymap_layers {
 // SYM layer macro keycodes
 enum custom_keycodes {
     KC_ARR = SAFE_RANGE, // ->
-    KC_FAT,              // =>
     RGB_THEME,
 };
 
@@ -143,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |   \  |   *  |   &  |   ~  |  ->  |                              |   ^  |   `  |   {  |   }  |  =>  |        |
+ * |        |   \  |   *  |   &  |   ~  |  ->  |                              |   ^  |   `  |   {  |   }  |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |   #  |   :  |   +  |   @  |   <  |                              |   >  |   =  |   (  |   )  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -157,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [LAYER_SYM] = LAYOUT_elora_hlc(
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      KC_NO,   KC_BSLS, KC_ASTR, KC_AMPR, KC_TILD, KC_ARR,                                       KC_CIRC, KC_GRV,  KC_LCBR, KC_RCBR, KC_FAT,  KC_NO,
+      KC_NO,   KC_BSLS, KC_ASTR, KC_AMPR, KC_TILD, KC_ARR,                                       KC_CIRC, KC_GRV,  KC_LCBR, KC_RCBR, KC_NO,   KC_NO,
       KC_NO,   KC_HASH, KC_COLN, KC_PLUS, KC_AT,   KC_LT,                                        KC_GT,   KC_EQL,  KC_LPRN, KC_RPRN, KC_NO,   KC_NO,
       KC_NO,   KC_PIPE, KC_BSLS, KC_EXLM, KC_PERC, KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,   KC_UNDS, KC_LBRC, KC_RBRC, KC_SLSH, KC_NO,
                                  _______, _______, QK_LLCK, KC_NO,   _______,     _______, KC_NO,   KC_NO,   _______, _______,
@@ -362,7 +361,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case KC_ARR: send_string("->"); return false;
-            case KC_FAT: send_string("=>"); return false;
             case KC_SPC:
                 if (is_caps_word_on()) {
                     tap_code16(KC_UNDS);
