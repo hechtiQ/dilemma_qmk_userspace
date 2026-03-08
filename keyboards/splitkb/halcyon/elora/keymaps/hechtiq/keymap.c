@@ -39,11 +39,8 @@ enum dilemma_keymap_layers {
 
 // SYM layer macro keycodes
 enum custom_keycodes {
-    KC_LEQ = SAFE_RANGE,
-    KC_GEQ,
-    KC_NEQ,
-    KC_ARR,
-    KC_PAE,
+    KC_ARR = SAFE_RANGE, // ->
+    KC_FAT,              // =>
     RGB_THEME,
 };
 
@@ -141,17 +138,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
  * Sym Layer: Symbols
+ * Combos (SYM layer only): > + = → <=    = + ( → =>    = + ` → !=    = + _ → +=
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |   \  |   *  |   &  |  ->  |      |                              |  !=  |   `  |   {  |   }  |  +=  |        |
+ * |        |   \  |   *  |   &  |   ~  |  ->  |                              |   ^  |   `  |   {  |   }  |  =>  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |   @  |   :  |   +  |   <  |      |                              |   >  |   =  |   (  |   )  |  ; : |        |
+ * |        |   #  |   :  |   +  |   @  |   <  |                              |   >  |   =  |   (  |   )  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   #  |   |  |   !  |  <=  |      |      |      |  |      |      |  >=  |   _  |   [  |   ]  |  / ? |        |
+ * |        |   |  |   \  |   !  |   %  |      |      |      |  |      |      |      |   _  |   [  |   ]  |  / ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |LLLCK |      |      |  |      |      |      |      |      |
+ *                        |      |      |LLLCK |      | SYM  |  |  SYM |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  * ,-----------------------------------.                                              ,-----------------------------------.
  * |      |      |       |      |      |                                              |      |      |       |      |      |
@@ -159,9 +157,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [LAYER_SYM] = LAYOUT_elora_hlc(
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      KC_NO,   KC_BSLS, KC_ASTR, KC_AMPR, KC_ARR,  KC_NO,                                        KC_NEQ,  KC_GRV,  KC_LCBR, KC_RCBR, KC_PAE,  KC_NO,
-      KC_NO,   KC_AT,   KC_COLN, KC_PLUS, KC_LT,   KC_NO,                                        KC_GT,   KC_EQL,  KC_LPRN, KC_RPRN, KC_SCLN, KC_NO,
-      KC_NO,   KC_HASH, KC_PIPE, KC_EXLM, KC_LEQ,  KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_GEQ,  KC_UNDS, KC_LBRC, KC_RBRC, KC_SLSH, KC_NO,
+      KC_NO,   KC_BSLS, KC_ASTR, KC_AMPR, KC_TILD, KC_ARR,                                       KC_CIRC, KC_GRV,  KC_LCBR, KC_RCBR, KC_FAT,  KC_NO,
+      KC_NO,   KC_HASH, KC_COLN, KC_PLUS, KC_AT,   KC_LT,                                        KC_GT,   KC_EQL,  KC_LPRN, KC_RPRN, KC_NO,   KC_NO,
+      KC_NO,   KC_PIPE, KC_BSLS, KC_EXLM, KC_PERC, KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,   KC_UNDS, KC_LBRC, KC_RBRC, KC_SLSH, KC_NO,
                                  _______, _______, QK_LLCK, KC_NO,   _______,     _______, KC_NO,   KC_NO,   _______, _______,
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         _______, _______, _______, _______, _______
     ),
@@ -363,11 +361,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
-            case KC_LEQ: send_string("<="); return false;
-            case KC_GEQ: send_string(">="); return false;
-            case KC_NEQ: send_string("!="); return false;
             case KC_ARR: send_string("->"); return false;
-            case KC_PAE: send_string("+="); return false;
+            case KC_FAT: send_string("=>"); return false;
             case KC_SPC:
                 if (is_caps_word_on()) {
                     tap_code16(KC_UNDS);
@@ -507,12 +502,20 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
         FJ_CAPS,
         QP_GAMING,
         MEDIA_PLAY,
+        SYM_LEQ,
+        SYM_FAT,
+        SYM_NEQ,
+        SYM_PAE,
     };
     const uint16_t PROGMEM qw_combo[]          = {KC_Q, KC_W, COMBO_END};
     const uint16_t PROGMEM lck_combo[]         = {KC_0, KC_PSCR, COMBO_END};
     const uint16_t PROGMEM caps_combo[]        = {MOD_F, MOD_J, COMBO_END};
     const uint16_t PROGMEM gaming_combo[]      = {KC_Q, KC_P, COMBO_END};
     const uint16_t PROGMEM media_play_combo[]  = {KC_MPRV, KC_MNXT, COMBO_END};
+    const uint16_t PROGMEM sym_leq_combo[]     = {KC_GT,  KC_EQL,  COMBO_END}; // > + = → <=
+    const uint16_t PROGMEM sym_fat_combo[]     = {KC_EQL, KC_LPRN, COMBO_END}; // = + ( → =>
+    const uint16_t PROGMEM sym_neq_combo[]     = {KC_EQL, KC_GRV,  COMBO_END}; // = + ` → !=
+    const uint16_t PROGMEM sym_pae_combo[]     = {KC_EQL, KC_UNDS, COMBO_END}; // = + _ → +=
 
     combo_t key_combos[] = {
         [QW_ESC]    = COMBO(qw_combo,        KC_ESC),
@@ -520,6 +523,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
         [FJ_CAPS]   = COMBO(caps_combo,       CW_TOGG),
         [QP_GAMING] = COMBO(gaming_combo,     TG(LAYER_GAMING)),
         [MEDIA_PLAY]= COMBO(media_play_combo, KC_MPLY),
+        [SYM_LEQ]   = COMBO_ACTION(sym_leq_combo),
+        [SYM_FAT]   = COMBO_ACTION(sym_fat_combo),
+        [SYM_NEQ]   = COMBO_ACTION(sym_neq_combo),
+        [SYM_PAE]   = COMBO_ACTION(sym_pae_combo),
     };
 
     bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -529,10 +536,25 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
             case ZR_PRS:
             case QP_GAMING:
                 return layer_state_is(LAYER_BASE);
+            case SYM_LEQ:
+            case SYM_FAT:
+            case SYM_NEQ:
+            case SYM_PAE:
+                return layer_state_is(LAYER_SYM);
             case MEDIA_PLAY:
                 return true;
         }
         return false;
+    }
+
+    void process_combo_event(uint16_t combo_index, bool pressed) {
+        if (!pressed) return;
+        switch (combo_index) {
+            case SYM_LEQ: send_string("<="); break;
+            case SYM_FAT: send_string("=>"); break;
+            case SYM_NEQ: send_string("!="); break;
+            case SYM_PAE: send_string("+="); break;
+        }
     }
 #endif // COMBO_ENABLE
 
