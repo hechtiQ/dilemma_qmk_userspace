@@ -105,7 +105,7 @@ static user_config_t user_config;
 #define INTJ    LT(LAYER_INTELIJ, KC_TAB)
 #define INTJ2   MO(LAYER_INTELIJ2)
 #define GNME    LT(LAYER_GNOME, KC_ENT)
-#define SETT    MO(LAYER_SETTINGS)
+#define SETT    OSL(LAYER_SETTINGS)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -227,11 +227,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | QkDoc  | Open |GoImp | GoBk | GoFw |      |                              |      |      |      |      |      |        |
+ * |        | QkDoc| Open |GoImp | GoBk | GoFw |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | QkDef  | BmkT |GoDcl | CmdP |RcntF |      |                              |      |      |      |      |      |        |        |
+ * |        | QkDef| BmkT |GoDcl | CmdP |RcntF |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | RfctMn | Find |FndUsg| BmkP | BmkN |      |      |      |  |      |      |      |      |      |      |      |        |        |
+ * |        |RfctMn| Find |FndUsg| BmkP | BmkN |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      | INTJ2|      |      |  |      |      |LLLCK |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -241,9 +241,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [LAYER_INTELIJ] = LAYOUT_elora_hlc(
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      QCK_DOC, OPEN,    GO_IMP,  GO_BCK,  GO_FWD,  KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      QCK_DEF, BMRK_T,  GO_DCL,  CMD_P,   RCNT_FI, KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      RFCT_MN, FIND,    FND_USG, BMRK_P,  BMRK_N,  KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   QCK_DOC, OPEN,    GO_IMP,  GO_BCK,  GO_FWD,                                       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   QCK_DEF, BMRK_T,  GO_DCL,  CMD_P,   RCNT_FI,                                      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   RFCT_MN, FIND,    FND_USG, BMRK_P,  BMRK_N,  KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                  _______, _______, KC_NO,   _______,  INTJ2,       _______, KC_NO,   QK_LLCK, _______, _______,
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         _______, _______, _______, _______, _______
     ),
@@ -281,11 +281,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * | Esc    |  1   |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   | PScr   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  T     |  Q   |  W   |  E   |  R   |      |                              |      |  Y   |  U   |  I   |  O   |  P     |
+ * |        |  T   |  Q   |  W   |  E   |  R   |                              |   Y  |  U   |  I   |  O   |  P   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  G     |  A   |  S   |  D   |  F   |      |                              |      |  H   |  J   |  K   |  L   |  ; :   |  ' "  |
+ * |        |  G   |  A   |  S   |  D   |  F   |                              |   H  |  J   |  K   |  L   |  ; : |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  B     |  Z   |  X   |  C   |  V   |      |      |      |  |      |      |      |  N   |  M   |  , < |  . > |  / ?   |        |
+ * |        |  B   |  Z   |  X   |  C   |  V   |      |      |  |      |      |   N  |  M   |  , < |  . > |  / ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | LCtl | Spc  | LSft | MPLY |      |  |      | MUTE |      |      |TG(GM)|
  *                        `----------------------------------'  `----------------------------------'
@@ -295,9 +295,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [LAYER_GAMING] = LAYOUT_elora_hlc(
       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PSCR,
-      KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_NO,                                        KC_NO,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-      KC_G,    KC_A,    KC_S,    KC_D,    KC_F,    KC_NO,                                        KC_NO,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-      KC_B,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
+      KC_NO,   KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
+      KC_NO,   KC_G,    KC_A,    KC_S,    KC_D,    KC_F,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_NO,
+      KC_NO,   KC_B,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
                                  _______, _______, KC_LCTL, KC_SPC,  KC_LSFT,     KC_NO,   KC_NO,   TG(LAYER_GAMING), _______, _______,
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         _______, _______, _______, _______, _______
     ),
@@ -308,11 +308,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | WinUp  |WinLft|WinRgt|WinDwn|      |      |                              |      | SS_1 | SS_2 | SS_3 | SS_4 |        |
+ * |        | WinUp|WinLft|WinRgt|WinDwn|      |                              |      | SS_1 | SS_2 | SS_3 | SS_4 |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | Super  |      | WS_L | WS_R |      |      |                              |      | S_1  | S_2  | S_3  | S_4  |        |        |
+ * |        | Super|      | WS_L | WS_R |      |                              |      | S_1  | S_2  | S_3  | S_4  |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |        |
+ * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |AT_GRV| A_TAB|AS_TAB|      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -322,8 +322,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [LAYER_GNOME] = LAYOUT_elora_hlc(
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      S_UP,    S_LFT,   S_RGT,   S_DWN,   KC_NO,   KC_NO,                                        KC_NO,   SS_1,    SS_2,    SS_3,    SS_4,    KC_NO,
-      ACTY,    KC_NO,   WS_L,    WS_R,    KC_NO,   KC_NO,                                        KC_NO,   S_1,     S_2,     S_3,     S_4,     KC_NO,
+      KC_NO,   S_UP,    S_LFT,   S_RGT,   S_DWN,   KC_NO,                                        KC_NO,   SS_1,    SS_2,    SS_3,    SS_4,    KC_NO,
+      KC_NO,   ACTY,    KC_NO,   WS_L,    WS_R,    KC_NO,                                        KC_NO,   S_1,     S_2,     S_3,     S_4,     KC_NO,
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,       KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                  _______, _______, AT_GRV,  A_TAB,   AS_TAB,      _______, KC_NO,   KC_NO,   _______, _______,
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                                         _______, _______, _______, _______, _______
@@ -368,6 +368,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case KC_NEQ: send_string("!="); return false;
             case KC_ARR: send_string("->"); return false;
             case KC_PAE: send_string("+="); return false;
+            case KC_SPC:
+                if (is_caps_word_on()) {
+                    tap_code16(KC_UNDS);
+                    return false;
+                }
+                break;
             case RGB_THEME:
                 user_config.rgb_theme_matcha = !user_config.rgb_theme_matcha;
                 eeconfig_update_user(user_config.raw);
@@ -375,6 +381,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     return true;
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            // Shift letters and minus, continue CapsWord
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case KC_SPC:
+            // Allow these without shifting, continue CapsWord
+            // (space is intercepted in process_record_user and converted to _)
+            return true;
+        default:
+            // Everything else (including Enter) exits CapsWord
+            return false;
+    }
 }
 
 #ifdef RGB_MATRIX_ENABLE
@@ -388,7 +415,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         [LAYER_BASE]     = { 80,  60, 180}, // soft lavender
         [LAYER_SYM]      = {112,  80, 204}, // deeper purple
         [LAYER_NAV]      = { 40,  80, 200}, // periwinkle blue
-        [LAYER_SETTINGS] = {140,  40, 160}, // lavender pink
+        [LAYER_SETTINGS] = {200,  20,  20}, // danger red
         [LAYER_INTELIJ]  = {100,  60, 200}, // medium lavender
         [LAYER_INTELIJ2] = { 80,  40, 160}, // darker lavender
         [LAYER_GAMING]   = {160,  20, 120}, // deep magenta
@@ -399,7 +426,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         [LAYER_BASE]     = { 60, 140,  60}, // soft moss
         [LAYER_SYM]      = { 40, 160,  80}, // richer green
         [LAYER_NAV]      = { 30, 130, 100}, // fern
-        [LAYER_SETTINGS] = { 80, 150,  40}, // lily pad
+        [LAYER_SETTINGS] = {200,  20,  20}, // danger red
         [LAYER_INTELIJ]  = { 50, 145,  70}, // sage
         [LAYER_INTELIJ2] = { 30, 110,  50}, // dark moss
         [LAYER_GAMING]   = {120, 200,  20}, // poison frog
